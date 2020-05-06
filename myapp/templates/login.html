@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <h1>登录页面</h1>
+        <form action="/login/" method="post">
+            {% if message %}
+            <div>{{ message }}</div>
+            {% endif %}
+
+            {% csrf_token %}
+            <div>
+                <label>用户名：</label>
+                <input type="text" placeholder="Username" autofocus required />
+            </div>
+            <div>
+                <label>密码：</label>
+                <input type="password" placeholder="Password" required />
+            </div>
+            <div>
+                <input type="submit" value="确定">
+            </div>
+        </form>
+    </body>
+</html>
