@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign up</title>
+        <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    </head>
+    <body>
+        <div class="signup-container">
+            <div class="signup-tab-box">
+                <label class="signup-tab-body">Sign up</label>
+            </div>
+            <div class="signup-box">
+                <div class="signup-body">
+                    <form action="/users/signup" method="POST" accept-charset="utf-8">
+                        <div class="form-group">
+                            <label for="user_login" class="label-bold">Username</label>
+                            <input class="form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
+                            required="required" type="text" spellcheck="false" id="user_login"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_password" class="label-bold">Password</label>
+                            <input class="form-control bottom" autofocus="autofocus" required="required"\
+                            type="password" id="user_password"/>
+                        </div>
+                        <div class="summit-container">
+                            <input class="btn" type="submit" value="Sign up" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign in</title>
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="login-tab-box">
+                <label class="login-tab-body">Sign in</label>
+            </div>
+            <div class="login-box">
+                <div class="login-body">
+                    <form action="/users/login" method="POST" accept-charset="utf-8">
+                        <div class="form-group">
+                            <div class="login-username">
+                                <label for="user_login" class="label-bold">Username</label>
+                                <div class="float-right">
+                                    <a href="/user/signup">Don't have an account?</a>
+                                </div>
+                            </div>
+                            <input class="form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
+                            required="required" type="text" spellcheck="false" id="user_login"/>
+                        </div>
+                        <div class="form-group">
+                            <div class="login-password">
+                                <label for="user_password" class="label-bold">Password</label>
+                                <div class="float-right">
+                                    <a href="">Forgot your password?</a>
+                                </div>
+                            </div>
+                            <input class="form-control bottom" autofocus="autofocus" required="required"\
+                            type="password" id="user_password"/>
+                        </div>
+                        <div class="summit-container">
+                            <input class="btn" type="submit" value="Sign in" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
