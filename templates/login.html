@@ -1,46 +1,61 @@
+{% extends 'home.html' %}
 {% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Sign in</title>
-        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        {% block title %}<title>Sign in to Home</title>{% endblock %}
+        {% block css %}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
+        {% block js %}<script src="{% static 'js/login.js' %}"></script>{% endblock %}
     </head>
     <body>
+    {% block content %}{% endblock %}
+    {% block signin %}
+    <form action="/user/login/" method="POST" accept-charset="utf-8" id="form-signin">
+        {% csrf_token %}
         <div class="login-container">
+            {% if message %}
+            <div class="login-flash-error">
+                <span class="login-error-message">Incorrect username or password.</span>
+                <button class="login-flash-close" type="submit" name="del-message">
+                    <svg class="login-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
+                    </svg>
+                </button>
+            </div>
+            {% endif %}
             <div class="login-tab-box">
-                <label class="login-tab-body">Sign in</label>
+                <label class="login-tab-body">Sign in to Home</label>
             </div>
             <div class="login-box">
                 <div class="login-body">
-                    <form action="/users/login" method="POST" accept-charset="utf-8">
-                        <div class="form-group">
-                            <div class="login-username">
-                                <label for="user_login" class="label-bold">Username</label>
-                                <div class="float-right">
-                                    <a href="/user/signup">Don't have an account?</a>
-                                </div>
-                            </div>
-                            <input class="form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
-                            required="required" type="text" spellcheck="false" id="user_login"/>
-                        </div>
-                        <div class="form-group">
-                            <div class="login-password">
-                                <label for="user_password" class="label-bold">Password</label>
-                                <div class="float-right">
-                                    <a href="">Forgot your password?</a>
-                                </div>
-                            </div>
-                            <input class="form-control bottom" autofocus="autofocus" required="required"\
-                            type="password" id="user_password"/>
-                        </div>
-                        <div class="summit-container">
-                            <input class="btn" type="submit" value="Sign in" />
-                        </div>
-                    </form>
+                    <div class="login-form-group">
+                        <label for="username" class="login-username">
+                            <span class="login-label-bold">Username</span>
+                            <a class="login-float-right" href="/user/signup">Don't have an account?</a>
+                        </label>
+                        {% comment %} <input class="login-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
+                        required="required" type="text" spellcheck="false" id="username" name="username" /> {% endcomment %}
+                        {{ login_form.username }}
+                    </div>
+                    <div class="login-form-group">
+                        <label for="password" class="login-password">
+                            <span for="user_password" class="login-label-bold">Password</span>
+                            <a class="login-float-right" href="">Forgot your password?</a>
+                        </label>
+                        {% comment %} <input class="login-form-control" autofocus="autofocus" required="required"\
+                        type="password" id="password" name="password" /> {% endcomment %}
+                        {{ login_form.password }}
+                    </div>
+                    <div class="login-summit-container">
+                        <input class="login-btn" type="submit" value="Sign in" id="signin" name="signin"/>
+                        {% comment %} <button class="login-btn" type="submit" value="Sign in" id="signin" name="signin">Sign in</button> {% endcomment %}
+                    </div>
                 </div>
             </div>
         </div>
+        </form>
+        {% endblock %}
     </body>
 </html>

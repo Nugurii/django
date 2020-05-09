@@ -1,36 +1,66 @@
+{% extends 'home.html' %}
 {% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Sign up</title>
-        <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+        {% block title %}<title>Create your account</title>{% endblock %}
+        {% block css %}<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
     </head>
     <body>
+    {% block content %} {% endblock %}
+    {% block signup %}
+    <form action="/user/signup/" method="POST" accept-charset="utf-8">
+        {% csrf_token %}
         <div class="signup-container">
+            {% if message == 'error' %}
+                <div class="signup-flash-error">
+                    <span class="signup-error-message">Username is already taken</span>
+                    <button class="signup-flash-close" type="button" name="del-message">
+                        <svg class="signup-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
+                        </svg>
+                    </button>
+                </div>
+            {% elif message == 'success' %}
+                <div class="signup-flash-success">
+                    <span class="signup-error-message">Sign up successfully! </span>
+                    <a href="/user/login">Sign in now.</a>
+                    <button class="signup-flash-close" type="button" name="del-message">
+                        <svg class="signup-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
+                        </svg>
+                    </button>
+                </div>
+            {% endif %}
             <div class="signup-tab-box">
-                <label class="signup-tab-body">Sign up</label>
+                <label class="signup-tab-body">Create your account</label>
             </div>
             <div class="signup-box">
                 <div class="signup-body">
-                    <form action="/users/signup" method="POST" accept-charset="utf-8">
-                        <div class="form-group">
-                            <label for="user_login" class="label-bold">Username</label>
-                            <input class="form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
-                            required="required" type="text" spellcheck="false" id="user_login"/>
+                    {% comment %} <form action="/user/signup/" method="POST" accept-charset="utf-8"> {% endcomment %}
+                        {% comment %} {% csrf_token %} {% endcomment %}
+                        <div class="signup-form-group">
+                            <label class="signup-label-bold">Username</label>
+                            {% comment %} <input class="signup-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
+                            required="required" type="text" spellcheck="false" id="user_login" name="username"/> {% endcomment %}
+                            {{ register_form.username}}
                         </div>
-                        <div class="form-group">
-                            <label for="user_password" class="label-bold">Password</label>
-                            <input class="form-control bottom" autofocus="autofocus" required="required"\
-                            type="password" id="user_password"/>
+                        <div class="signup-form-group">
+                            <label class="signup-label-bold">Password</label>
+                            {% comment %} <input class="signup-form-control bottom" autofocus="autofocus" required="required"\
+                            type="password" id="user_password" name="password"/> {% endcomment %}
+                            {{ register_form.password }}
                         </div>
-                        <div class="summit-container">
-                            <input class="btn" type="submit" value="Sign up" />
+                        <div class="signup-summit-container">
+                            <input class="signup-btn" type="submit" value="Sign up" name="signup"/>
                         </div>
-                    </form>
+                    {% comment %} </form> {% endcomment %}
                 </div>
             </div>
         </div>
+    </form>
+    {% endblock %}
     </body>
 </html>

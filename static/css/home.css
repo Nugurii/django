@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.home-titlebar-container {
+    display: block;
+    width: 100%;
+    padding: 10px 30px;
+    font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+.home-title {
+    display: inline-block;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 50px;
+    text-decoration: none;
+}
+
+.home-title:hover {
+    text-decoration: underline;
+}
+
+.home-float-name {
+    display: block;
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: 4px;
+    margin: 0 10px;
+    font-size: 18px;
+    line-height: 50px;
+    float: right;
+}
+
+.home-float-right {
+    display: block;
+    margin: 0 10px;
+    font-size: 18px;
+    line-height: 50px;
+    float: right;
+    text-decoration: none;
+}
+
+.home-float-right:hover {
+    text-decoration: underline;
+}
+
+.home-date-container {
+    margin: 150px auto;
+    width: 343px;
+    /* box-shadow: 0 0 0 1px #e5e5e5; */
+}
+
+.home-date-body {
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    padding: 15px;
+    font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 13px;
+}
+
+.home-form-group {
+    margin-bottom: 24px;
+}
+
+.home-label-bold {
+    display: inline-block;
+    color: #2e2e2e;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.home-form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #2e2e2e;
+    background-color: rgb(232, 240, 254);
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.home-btn{
+    width: 100%;
+    height: 34px;
+    padding: 6px, 0;
+    background-color: #28a745;
+    background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.1s linear, background-image 0.1s linear, border-color 0.1s linear, box-shadow 0.1s linear;
+}
+
+.home-btn:hover {
+    background-color: #269f42;
+    background-image: linear-gradient(-180deg,#2fcb53,#269f42 90%);
+    /* background-position: -.5em; */
+    border-color: rgba(27,31,35,.5);
+}
+
+.home-btn:active {
+    background-color: #279f43;
+    background-image: none;
+    border-color: rgba(27,31,35,.5);
+    /* box-shadow: 0 0 0 0.2rem rgba(60,183,111,0.5); */
+}
+
+.home-flash-container {
+    width: 100%;
+    /* height: 50px; */
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 4px;
+    background-color: rgb(255, 220, 224);
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI';
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.home-flash-message {
+    display: inline-block;
+    font-family: 'Segoe UI';
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.home-flash-close {
+    height: 28px;
+    float: right;
+    padding: 8px;
+    margin: -8px;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    opacity: .6;
+}
+
+.home-flash-close:hover {
+    opacity: 1;
+}
+
+.home-oction {
+    display: inline-block;
+    vertical-align: text-bottom;
+}

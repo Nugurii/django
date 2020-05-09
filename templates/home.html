@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% block title %}<title>home</title>{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+        {% block css %}{% endblock %}
+        {% block js %}{% endblock %}
+    </head>
+    <body>
+        <div class="home-titlebar-container">
+            <a class="home-title" href="/">home</a>
+            {% if request.session.is_login %}
+            <a class="home-float-right" href="/user/logout">sign out</a>
+            <span class="home-float-name">{{ request.session.user_name }}</span>
+            {% else %}
+            <a class="home-float-right" href="/user/signup">sign up</a>
+            <a class="home-float-right" href="/user/login">sign in</a>
+            {% endif %}
+        </div>
+        {% block content %}
+        <div class="home-date-container">
+            {% if message %}
+            <div class="home-flash-container">
+                <span class="home-flash-message">{{ message }}</span>
+                <button class="home-flash-close" type="button">
+                    <svg class="home-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
+                    </svg>
+                </button>
+            </div>
+            {% endif %}
+            <div class="home-date-body">
+                <form action="/" method="POST" accept-charset="utf-8">
+                    {% csrf_token %}
+                    <div class="home-form-group">
+                        <label class="home-label-bold">Date</label>
+                        {% comment %} <input class="home-form-control" autofocus="autofocus" required="required" type="date" name="date"/> {% endcomment %}
+                        {{ date_form.date }}
+                    </div>
+                    <input class="home-btn" type="submit" value="查询" />
+                 </form>
+            </div>
+        {% endblock %}
+        {% block signup %}{% endblock %}
+        {% block signin %}{% endblock %}
+    </body>
+</html>
