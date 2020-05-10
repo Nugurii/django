@@ -8,10 +8,10 @@
 
 <font face="Consolas">
 
-*python == 3.7*<br>
-*Django == 2.2*<br>
-*mysqlclient >= 1.3.13*<br>
-*mysql == 8.0.20*<br>
+*python==3.7*<br>
+*Django==2.2*<br>
+*mysqlclient>=1.3.13*<br>
+*mysql==8.0.20*<br>
 
 </font>
 
@@ -69,3 +69,15 @@ python manage.py runserver
 </font>
 
 ## <font face="Consolas" size=5>接口说明</font>
+
+1. /，home 页面接口名为 `DjangoDemo\myapp\forms.py` 中自定义表单 `DateForm` 中的 `date`，接受的参数为 `YY-MM-DD` 格式的字符串，返回格式为字符串，在后端使用 `session` 判断用户是否处于登录状态。
+
+    <center><img src="https://img-blog.csdnimg.cn/20200510120640461.PNG" width="70%"></img></center>
+
+2. /user/login/，继承 home 页面，login 页面接口名为 `DjangoDemo\myapp\forms.py` 中自定义表单 `UserForm` 中的 `username` 和 `password`，接受的参数为非空字符串，返回格式为字符串。若登录失败，后端返回 `Incorrect username or password.`；若登录成功，后端通过 `session` 设置用户处于登录状态，并直接跳转至 `home` 页面，右上角显示用户信息。
+
+    <center><img src="https://img-blog.csdnimg.cn/20200510120640465.PNG" width="70%"></img></center>
+
+3. /user/signup/，继承 home 页面，signup 页面接口名为 `DjangoDemo\myapp\forms.py` 中自定义表单 `RegisterForm` 中的 `username` 和 `password`，接受的参数为非空字符串，返回格式为字符串。若注册失败，后端返回 `Username is already taken`；若注册成功，后端返回 `Sign up successfully!`。
+
+    <center><img src="https://img-blog.csdnimg.cn/20200510120640490.PNG" width="70%"></img></center>
