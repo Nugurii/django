@@ -79,7 +79,7 @@ python manage.py runserver
         </tr>
     </table>
 
-2. /user/login/，继承 home 页面，login 页面接口名为 `DjangoDemo\myapp\forms.py` 中自定义表单 `UserForm` 中的 `username` 和 `password`，接受的参数为非空字符串，返回格式为字符串。若登录失败，后端返回 `Incorrect username or password.`；若登录成功，后端通过 `session` 设置用户处于登录状态，并直接跳转至 `home` 页面，右上角显示用户信息。
+2. /user/signin/，继承 home 页面，signin 页面接口名为 `DjangoDemo\myapp\forms.py` 中自定义表单 `UserForm` 中的 `username` 和 `password`，接受的参数为非空字符串，返回格式为字符串。若登录失败，后端返回 `Incorrect username or password.`；若登录成功，后端通过 `session` 设置用户处于登录状态，并直接跳转至 `home` 页面，右上角显示用户信息。
 
     <table align="center">
         <tr>

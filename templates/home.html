@@ -12,12 +12,12 @@
     <body>
         <div class="home-titlebar-container">
             <a class="home-title" href="/">home</a>
-            {% if request.session.is_login %}
+            {% if request.session.is_signin %}
             <a class="home-float-right" href="/user/logout">sign out</a>
             <span class="home-float-name">{{ request.session.user_name }}</span>
             {% else %}
             <a class="home-float-right" href="/user/signup">sign up</a>
-            <a class="home-float-right" href="/user/login">sign in</a>
+            <a class="home-float-right" href="/user/signin">sign in</a>
             {% endif %}
         </div>
         {% block content %}

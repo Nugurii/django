@@ -22,7 +22,7 @@ urlpatterns = [
     # path('', views.home),
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
-    # path('user/login/', views.login),
+    # path('user/signin/', views.signin),
     # path('user/signup/', views.signup),
     # path('user/logout/', views.logout),
 ]

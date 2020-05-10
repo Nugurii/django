@@ -18,7 +18,7 @@ def home(request):
         print('7878')
         date_form = DateForm(request.POST)
         print('9090')
-        if not request.session.get('is_login', None):
+        if not request.session.get('is_signin', None):
             message = '未登录！'
             return render(request, 'home.html', {"date_form": date_form, "message": message})
         else:
@@ -39,35 +39,35 @@ def home(request):
     date_form = DateForm()
     return render(request, 'home.html', {"date_form": date_form})
 
-def login(request):
+def signin(request):
     print('1111')
     if request.method == "POST":
         print('7777')
         if 'signin' in request.POST:
             print('8888')
             print(fib(32)) # delay
-            login_form = UserForm(request.POST)
-            if login_form.is_valid():
-                username = login_form.cleaned_data['username']
-                password = login_form.cleaned_data['password']
+            signin_form = UserForm(request.POST)
+            if signin_form.is_valid():
+                username = signin_form.cleaned_data['username']
+                password = signin_form.cleaned_data['password']
                 try:
                     user = models.User.objects.get(name=username) 
                     if user.password == password:
-                        request.session['is_login'] = True
+                        request.session['is_signin'] = True
                         request.session['user_name'] = user.name
                         return redirect('/')
                     else:
                         message = "密码不正确！"
                 except:
                     message = "用户不存在！"
-                return render(request, 'login.html', {"login_form": login_form, "message": message})
+                return render(request, 'signin.html', {"signin_form": signin_form, "message": message})
         if 'del-message' in request.POST:
             print('6666')
             message = ''
-            login_form = UserForm(request.POST)
-            return render(request, 'login.html', {"login_form": login_form, "message": message})
-    login_form = UserForm()
-    return render(request, 'login.html', {"login_form": login_form})
+            signin_form = UserForm(request.POST)
+            return render(request, 'signin.html', {"signin_form": signin_form, "message": message})
+    signin_form = UserForm()
+    return render(request, 'signin.html', {"signin_form": signin_form})
 
 def signup(request):
     print('3333')
@@ -92,16 +92,16 @@ def signup(request):
         #     print('9999')
         #     message = ''
         #     register_form = RegisterForm(request.POST)
-        #     return render(request, 'login.html', {"register_form": register_form, "message": message})
+        #     return render(request, 'signin.html', {"register_form": register_form, "message": message})
     register_form = RegisterForm()
     return render(request, 'signup.html', {"register_form": register_form})
 
 def logout(request):
     print('5555')
-    if not request.session.get('is_login', None): # 如果本来就未登录，也就没有登出一说
+    if not request.session.get('is_signin', None): # 如果本来就未登录，也就没有登出一说
         return redirect("/")
     request.session.flush() # 或者使用下面的方法
-    # del request.session['is_login']
+    # del request.session['is_signin']
     # del request.session['user_id']
     # del request.session['user_name']
     return redirect("/")
