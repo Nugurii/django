@@ -1,4 +1,4 @@
-# <font face="Consolas" size=7>说明</font>
+# <font face="Consolas" size=7>说明文档</font>
 
 <font face="Consolas">韩佳乐 PB16051152</font>
 
@@ -11,7 +11,7 @@
 `python`==3.7<br>
 `Django`==2.2<br>
 `mysqlclient`>=1.3.13<br>
-`mysql`==8.0.20<br>
+`mysql`>=5.7<br>
 
 </font>
 
