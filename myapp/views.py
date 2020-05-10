@@ -1,8 +1,9 @@
 # from django.shortcuts import render
 from . import models 
 from .forms import UserForm, RegisterForm, DateForm
+import json
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 
 def fib(n):
     if n == 0:
@@ -42,38 +43,39 @@ def home(request):
 def signin(request):
     print('1111')
     if request.method == "POST":
-        print('7777')
-        if 'signin' in request.POST:
-            print('8888')
-            print(fib(32)) # delay
-            signin_form = UserForm(request.POST)
-            if signin_form.is_valid():
-                username = signin_form.cleaned_data['username']
-                password = signin_form.cleaned_data['password']
-                try:
-                    user = models.User.objects.get(name=username) 
-                    if user.password == password:
-                        request.session['is_signin'] = True
-                        request.session['user_name'] = user.name
-                        return redirect('/')
-                    else:
-                        message = "密码不正确！"
-                except:
-                    message = "用户不存在！"
-                return render(request, 'signin.html', {"signin_form": signin_form, "message": message})
-        if 'del-message' in request.POST:
-            print('6666')
-            message = ''
-            signin_form = UserForm(request.POST)
-            return render(request, 'signin.html', {"signin_form": signin_form, "message": message})
-    signin_form = UserForm()
-    return render(request, 'signin.html', {"signin_form": signin_form})
+        reply = {'status': False, 'msg': None}
+        print('3434')
+        print(fib(32)) # delay
+        # username = request.POST.get('username')
+        # password = request.POST.get('password')
+        # print(username, password)
+        user_form = UserForm(request.POST)
+        if user_form.is_valid():
+            username = user_form.cleaned_data['username']
+            password = user_form.cleaned_data['password']
+            # print(username, password)
+            try:
+                user = models.User.objects.get(name=username)
+                if user.password == password:
+                    request.session['is_signin'] = True
+                    request.session['user_name'] = user.name
+                    reply['status'] = True
+                    reply['msg'] = 'Sign in successfully'
+                    return HttpResponse(json.dumps(reply))
+                else:
+                    reply['status'] = False
+                    reply['msg'] = 'Incorrect password'
+            except:
+                reply['status'] = False
+                reply['msg'] = 'Invalid username'
+        return HttpResponse(json.dumps(reply))
+    return render(request, 'signin.html')
 
 def signup(request):
     print('3333')
     if request.method == "POST":
         if 'signup' in request.POST:
-            print(fib(32)) # delay
+            print(fib(33)) # delay
             register_form = RegisterForm(request.POST)
             if register_form.is_valid():  # 获取数据
                 username = register_form.cleaned_data['username']

@@ -149,11 +149,11 @@
     border-color: rgba(27,31,35,.5);
 }
 
-/* .signin-btn:disabled {
-    background-color: #aebbb1;
+.signin-btn:disabled {
+    background-color: #94d3a2;
     background-image: none;
     cursor: default;
-} */
+}
 
 .signin-flash-error {
     width: 100%;
