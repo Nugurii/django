@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from . import models 
-from .forms import UserForm, RegisterForm, DateForm
+from .forms import SigninForm, SignupForm, DateForm
 import json
 
 from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
@@ -43,60 +43,79 @@ def home(request):
 def signin(request):
     print('1111')
     if request.method == "POST":
-        reply = {'status': False, 'msg': None}
+        # reply = {'status': False, 'msg': None}
+        message = None
         print('3434')
-        print(fib(32)) # delay
+        print(fib(33)) # delay
         # username = request.POST.get('username')
         # password = request.POST.get('password')
-        # print(username, password)
-        user_form = UserForm(request.POST)
-        if user_form.is_valid():
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password']
+        signin_form = SigninForm(request.POST)
+        if signin_form.is_valid():
+            username = signin_form.cleaned_data['username']
+            password = signin_form.cleaned_data['password']
             # print(username, password)
             try:
                 user = models.User.objects.get(name=username)
                 if user.password == password:
                     request.session['is_signin'] = True
                     request.session['user_name'] = user.name
-                    reply['status'] = True
-                    reply['msg'] = 'Sign in successfully'
-                    return HttpResponse(json.dumps(reply))
+                    # reply['status'] = True
+                    # reply['msg'] = 'Sign in successfully'
+                    # return HttpResponse(json.dumps(reply))
+                    return redirect("/")
                 else:
-                    reply['status'] = False
-                    reply['msg'] = 'Incorrect password'
+                    # reply['status'] = False
+                    # reply['msg'] = 'Incorrect password'
+                    message = 'Incorrect password'
             except:
-                reply['status'] = False
-                reply['msg'] = 'Invalid username'
-        return HttpResponse(json.dumps(reply))
-    return render(request, 'signin.html')
+                # reply['status'] = False
+                # reply['msg'] = 'Invalid username'
+                message = 'Invalid username'
+        # return HttpResponse(json.dumps(reply))
+        return render(request, 'signin.html', {"signin_form": signin_form, "message": message})
+    signin_form = SigninForm()
+    return render(request, 'signin.html', {"signin_form": signin_form})
 
 def signup(request):
     print('3333')
     if request.method == "POST":
         if 'signup' in request.POST:
-            print(fib(33)) # delay
-            register_form = RegisterForm(request.POST)
-            if register_form.is_valid():  # 获取数据
-                username = register_form.cleaned_data['username']
-                password = register_form.cleaned_data['password']
-                same_name_user = models.User.objects.filter(name=username)
-                if same_name_user:  # 用户名唯一
-                    message = 'error'
-                    return render(request, 'signup.html', {"register_form": register_form, "message": message})
+            print(fib(33))
+            signup_form = SignupForm(request.POST)
+            if signup_form.is_valid():
+                # username = request.POST.get('username')
+                # password = request.POST.get('password')
+                username = signup_form.cleaned_data['username']
+                password = signup_form.cleaned_data['password']
+                print(username, password)
                 new_user = models.User.objects.create()
                 new_user.name = username
                 new_user.password = password
                 new_user.save()
-                message = 'success'
-                return render(request, 'signup.html', {"register_form": register_form, "message": message})
-        # elif 'del-message' in request.POST:
-        #     print('9999')
-        #     message = ''
-        #     register_form = RegisterForm(request.POST)
-        #     return render(request, 'signin.html', {"register_form": register_form, "message": message})
-    register_form = RegisterForm()
-    return render(request, 'signup.html', {"register_form": register_form})
+                request.session['is_signin'] = True
+                request.session['user_name'] = username
+                return redirect("/")
+        else:
+            reply = {'status': True, 'msg': None}
+            print(fib(28))
+            username = request.POST.get('username')
+            # action = request.POST.get('type')
+            # if action == "0":
+            same_name_user = models.User.objects.filter(name=username)
+            if same_name_user:
+                reply['status'] = False
+            return HttpResponse(json.dumps(reply))
+        # elif action == "1":
+        #     print(fib(32))
+        #     password = request.POST.get('password')
+        #     new_user = models.User.objects.create()
+        #     new_user.name = username
+        #     new_user.password = password
+        #     new_user.save()
+        #     reply['status'] = True
+        #     return HttpResponse(json.dumps(reply))
+    signup_form = SignupForm()
+    return render(request, 'signup.html', {"signup_form": signup_form})
 
 def logout(request):
     print('5555')

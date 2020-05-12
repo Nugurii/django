@@ -7,7 +7,7 @@
 
 .signup-container {
     margin: 150px auto;
-    width: 343px;
+    width: 403px;
     font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .signup-label-bold {
-    display: block;
+    display: inline-block;
     color: #2e2e2e;
     font-weight: 600;
     font-size: 13px;
@@ -59,18 +59,23 @@
 }
 
 .signup-form-control {
-    display: block;
+    display: inline-block;
     width: 100%;
     height: 34px;
     border: 1px solid #dfdfdf;
     border-radius: 4px;
     padding: 6px 10px;
+    background-position: right 8px center;
+    /* background-position-x: right 8px;
+    background-position-y: center; */
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
     color: #2e2e2e;
     background-color: rgb(232, 240, 254);
-    background-clip: padding-box;
+    background-clip: border-box;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -98,6 +103,10 @@
     transition: background-color 0.1s linear, border-color 0.1s linear, box-shadow 0.1s linear;
 }
 
+.signup-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(60,183,111,0.5);
+}
+
 .signup-btn:hover {
     background-color: #168f48;
     border-color: #12753a;
@@ -106,7 +115,13 @@
 .signup-btn:active {
     background-color: #137e3f;
     border-color: #127339;
-    box-shadow: 0 0 0 0.2rem rgba(60,183,111,0.5);
+    box-shadow: none;
+}
+
+.signup-btn:disabled {
+    background-color: #94d3a2;
+    background-image: none;
+    cursor: default;
 }
 
 .signup-flash-error {
@@ -135,7 +150,7 @@
     line-height: 17px;
 }
 
-.signup-error-message {
+.signup-flash-message {
     display: inline-block;
     font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 13px;
@@ -165,4 +180,61 @@
 .signup-oction {
     display: inline-block;
     vertical-align: text-bottom;
+}
+
+.siginup-username-hint {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(112, 112, 112);
+}
+
+.siginup-password-hint {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(112, 112, 112);
+}
+
+.signup-username-message {
+    display: block;
+    font-size: 13px;
+    color: red;
+    float: right;
+    /* text-align: right; */
+}
+
+.signup-password-message {
+    display: block;
+    font-size: 13px;
+    color: red;
+    float: right;
+    /* text-align: right; */
+}
+
+.signup-username {
+    display: block;
+    width: 100%;
+}
+
+.signup-password {
+    display: block;
+    width: 100%;
+}
+
+.is-autocheck-errored {
+    padding-right: 30px;
+    background-image: url(../icon/error.png) !important;
+}
+
+.is-autocheck-successed {
+    padding-right: 30px;
+    background-image: url(../icon/success.png) !important;
+}
+
+.is-autocheck-loading {
+    padding-right: 30px;
+    background-image: url(../icon/loading.gif) !important;
 }

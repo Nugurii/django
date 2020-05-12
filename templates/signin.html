@@ -7,17 +7,14 @@
         <meta charset="UTF-8">
         {% block title %}<title>Sign in to Home</title>{% endblock %}
         {% block css %}<link rel="stylesheet" href="{% static 'css/signin.css' %}">{% endblock %}
-        {% block js %}
-        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/signin.js' %}"></script>
-        {% endblock %}
+        {% block js %}<script type="text/javascript" src="{% static 'js/signin.js' %}"></script>{% endblock %}
     </head>
     <body>
     {% block content %}{% endblock %}
     {% block signin %}
         <div class="signin-container">
-            <div class="signin-flash-error" id="flash-error" hidden="true">
+            {% if message %}
+            <div class="signin-flash-error" id="flash-error">
                 <span class="signin-error-message">Incorrect username or password.</span>
                 <button class="signin-flash-close" type="button" id="del-message">
                     <svg class="signin-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
@@ -25,30 +22,36 @@
                     </svg>
                 </button>
             </div>
+            {% endif %}
             <div class="signin-tab-box">
                 <label class="signin-tab-body">Sign in to Home</label>
             </div>
             <div class="signin-box">
                 <div class="signin-body">
+                <form action="/user/signin/" method="POST" accept-charset="utf-8" id="form-signin">
+                    {% csrf_token %}
                     <div class="signin-form-group">
                         <label for="username" class="signin-username">
                             <span class="signin-label-bold">Username</span>
                             <a class="signin-float-right" href="/user/signup">Don't have an account?</a>
                         </label>
-                        <input class="signin-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
-                        type="text" spellcheck="false" tabindex="1" id="username" />
+                        {% comment %} <input class="signin-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
+                        type="text" spellcheck="false" tabindex="1" id="username" /> {% endcomment %}
+                        {{ signin_form.username }}
                     </div>
                     <div class="signin-form-group">
                         <label for="password" class="signin-password">
                             <span for="user_password" class="signin-label-bold">Password</span>
                             <a class="signin-float-right" href="">Forgot your password?</a>
                         </label>
-                        <input class="signin-form-control" autofocus="autofocus"\
-                        type="password" tabindex="2" id="password" />
+                        {% comment %} <input class="signin-form-control" autofocus="autofocus"\
+                        type="password" tabindex="2" id="password" /> {% endcomment %}
+                        {{ signin_form.password }}
                     </div>
                     <div class="signin-summit-container">
-                        <input class="signin-btn" type="submit" value="Sign in" tabindex="3" id="signin"/>
+                        <input class="signin-btn" type="submit" value="Sign in" tabindex="3" id="signin" data-disable-with="Signing in..."/>
                     </div>
+                </form>
                 </div>
             </div>
         </div>

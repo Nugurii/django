@@ -7,60 +7,59 @@
         <meta charset="UTF-8">
         {% block title %}<title>Create your account</title>{% endblock %}
         {% block css %}<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
+        {% block js %}
+        <script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+        {% endblock %}
     </head>
     <body>
     {% block content %} {% endblock %}
     {% block signup %}
-    <form action="/user/signup/" method="POST" accept-charset="utf-8">
-        {% csrf_token %}
         <div class="signup-container">
-            {% if message == 'error' %}
-                <div class="signup-flash-error">
-                    <span class="signup-error-message">Username is already taken</span>
-                    <button class="signup-flash-close" type="button" name="del-message">
-                        <svg class="signup-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
-                        </svg>
-                    </button>
-                </div>
-            {% elif message == 'success' %}
-                <div class="signup-flash-success">
-                    <span class="signup-error-message">Sign up successfully! </span>
+                <div class="signup-flash-success" hidden="true" id="flash-box">
+                    <span class="signup-flash-message" id="flash-messag">Sign up successfully! </span>
                     <a href="/user/signin">Sign in now.</a>
-                    <button class="signup-flash-close" type="button" name="del-message">
+                    <button class="signup-flash-close" type="button" id="del-flash-message">
                         <svg class="signup-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
                         </svg>
                     </button>
                 </div>
-            {% endif %}
             <div class="signup-tab-box">
                 <label class="signup-tab-body">Create your account</label>
             </div>
             <div class="signup-box">
                 <div class="signup-body">
-                    {% comment %} <form action="/user/signup/" method="POST" accept-charset="utf-8"> {% endcomment %}
-                        {% comment %} {% csrf_token %} {% endcomment %}
+                    <form action="/user/signup/" method="POST" accept-charset="utf-8" id="form-signup">
+                        {% csrf_token %}
                         <div class="signup-form-group">
-                            <label class="signup-label-bold">Username</label>
-                            {% comment %} <input class="signup-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
-                            required="required" type="text" spellcheck="false" id="user_signin" name="username"/> {% endcomment %}
-                            {{ register_form.username}}
+                            <div class="signup-username">
+                                <label class="signup-label-bold">Username</label>
+                                <label class="signup-username-message" id="username-message"></label>
+                            </div>
+                            {% comment %} <input class="signup-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off"
+                            required="required" type="text" spellcheck="false" tabindex="1" id="username"/> {% endcomment %}
+                            {{ signup_form.username }}
+                            <span class="siginup-username-hint">Username may only contain numbers or letters.
+                            <br>Length required to be 5 to 39 characters.</span>
                         </div>
                         <div class="signup-form-group">
-                            <label class="signup-label-bold">Password</label>
-                            {% comment %} <input class="signup-form-control bottom" autofocus="autofocus" required="required"\
-                            type="password" id="user_password" name="password"/> {% endcomment %}
-                            {{ register_form.password }}
+                            <div class="signup-password">
+                                <label class="signup-label-bold">Password</label>
+                                <label class="signup-password-message" id="password-message"></label>
+                            </div>
+                            {% comment %} <input class="signup-form-control" autofocus="autofocus" required="required"
+                            type="password" tabindex="2" id="password"/> {% endcomment %}
+                            {{ signup_form.password }}
+                            <span class="siginup-password-hint">Minimum length is 8 characters.</span>
                         </div>
                         <div class="signup-summit-container">
-                            <input class="signup-btn" type="submit" value="Sign up" name="signup"/>
+                            <input class="signup-btn" type="submit" value="Sign up" tabindex="3" id="signup" disabled="true" 
+                            name="signup" data-disable-with="Signing up..."/>
                         </div>
-                    {% comment %} </form> {% endcomment %}
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
     {% endblock %}
     </body>
 </html>
