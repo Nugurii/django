@@ -89,38 +89,38 @@ $(function () {
             $("#signup").removeAttr("disabled");
     })
 
-    // $("#signup").click(function () {
-    //     let form_data = new FormData();
-    //     form_data.append('type', 1);
-    //     form_data.append('username', $("#username").val());
-    //     form_data.append('password', $("#password").val());
-    //     $.ajax({
-    //         url: '/user/signup/',
-    //         type: 'POST',
-    //         headers: {"X-CSRFToken": $.cookie("csrftoken")},
-    //         data: form_data,
-    //         dataType: 'JSON',
-    //         processData: false,
-    //         contentType: false,
-    //         success: function (args) {
-    //             let flash = $("#flash-box");
-    //             if (args.status) {
-    //                 // flash.show();
-    //                 // $("#signup").val("Sign up");
-    //                 // $("#password").val("");
-    //                 alert("Sign up successfully! now it's going to sign in.");
-    //                 window.location.href = '/user/signin/'
-    //             }
-    //             else {
-    //                 // flash.removeClass("signup-flash-success");
-    //                 // flash.addClass("signup-flash-error");
-    //                 // flash.show();
-    //             }
-    //         }
-    //     });
-    //     $(this).attr("disabled", true);
-    //     $(this).val("Signing up...")
-    // })
+    $("#signup").click(function () {
+        let form_data = new FormData();
+        form_data.append('type', 1);
+        form_data.append('username', $("#username").val());
+        form_data.append('password', $("#password").val());
+        $.ajax({
+            url: '/user/signup/',
+            type: 'POST',
+            headers: {"X-CSRFToken": $.cookie("csrftoken")},
+            data: form_data,
+            dataType: 'JSON',
+            processData: false,
+            contentType: false,
+            success: function (args) {
+                let flash = $("#flash-box");
+                if (args.status) {
+                    // flash.show();
+                    // $("#signup").val("Sign up");
+                    // $("#password").val("");
+                    alert("Sign up successfully! now it's going to sign in.");
+                    window.location.href = '/user/signin/'
+                }
+                else {
+                    // flash.removeClass("signup-flash-success");
+                    // flash.addClass("signup-flash-error");
+                    // flash.show();
+                }
+            }
+        });
+        $(this).attr("disabled", true);
+        $(this).val("Signing up...")
+    })
 
     $("#del-flash-message").click(function () {
         $("#flash-box").hide();

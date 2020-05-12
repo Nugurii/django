@@ -13,8 +13,7 @@
     {% block content %}{% endblock %}
     {% block signin %}
         <div class="signin-container">
-            {% if message %}
-            <div class="signin-flash-error" id="flash-error">
+            <div class="signin-flash-error" id="flash-error" hidden>
                 <span class="signin-error-message">Incorrect username or password.</span>
                 <button class="signin-flash-close" type="button" id="del-message">
                     <svg class="signin-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
@@ -22,36 +21,29 @@
                     </svg>
                 </button>
             </div>
-            {% endif %}
             <div class="signin-tab-box">
                 <label class="signin-tab-body">Sign in to Home</label>
             </div>
             <div class="signin-box">
                 <div class="signin-body">
-                <form action="/user/signin/" method="POST" accept-charset="utf-8" id="form-signin">
-                    {% csrf_token %}
                     <div class="signin-form-group">
-                        <label for="username" class="signin-username">
-                            <span class="signin-label-bold">Username</span>
+                        <div for="username" class="signin-username">
+                            <label class="signin-label-bold">Username</label>
                             <a class="signin-float-right" href="/user/signup">Don't have an account?</a>
-                        </label>
-                        {% comment %} <input class="signin-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off" \
-                        type="text" spellcheck="false" tabindex="1" id="username" /> {% endcomment %}
-                        {{ signin_form.username }}
+                        </div>
+                        <input class="signin-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off"
+                        type="text" spellcheck="false" tabindex="1" id="username" />
                     </div>
                     <div class="signin-form-group">
-                        <label for="password" class="signin-password">
-                            <span for="user_password" class="signin-label-bold">Password</span>
+                        <div for="password" class="signin-password">
+                            <label for="user_password" class="signin-label-bold">Password</label>
                             <a class="signin-float-right" href="">Forgot your password?</a>
-                        </label>
-                        {% comment %} <input class="signin-form-control" autofocus="autofocus"\
-                        type="password" tabindex="2" id="password" /> {% endcomment %}
-                        {{ signin_form.password }}
+                        </div>
+                        <input class="signin-form-control" autofocus="autofocus" type="password" tabindex="2" id="password" />
                     </div>
                     <div class="signin-summit-container">
-                        <input class="signin-btn" type="submit" value="Sign in" tabindex="3" id="signin" data-disable-with="Signing in..."/>
+                        <input class="signin-btn" type="submit" value="Sign in" tabindex="3" id="signin"/>
                     </div>
-                </form>
                 </div>
             </div>
         </div>

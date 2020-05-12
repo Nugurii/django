@@ -43,8 +43,7 @@ def home(request):
 def signin(request):
     print('1111')
     if request.method == "POST":
-        # reply = {'status': False, 'msg': None}
-        message = None
+        reply = {'status': False, 'msg': None}
         print('3434')
         print(fib(33)) # delay
         # username = request.POST.get('username')
@@ -53,69 +52,50 @@ def signin(request):
         if signin_form.is_valid():
             username = signin_form.cleaned_data['username']
             password = signin_form.cleaned_data['password']
-            # print(username, password)
             try:
                 user = models.User.objects.get(name=username)
                 if user.password == password:
                     request.session['is_signin'] = True
                     request.session['user_name'] = user.name
-                    # reply['status'] = True
-                    # reply['msg'] = 'Sign in successfully'
-                    # return HttpResponse(json.dumps(reply))
-                    return redirect("/")
+                    reply['status'] = True
+                    reply['msg'] = 'Sign in successfully'
+                    return HttpResponse(json.dumps(reply))
                 else:
-                    # reply['status'] = False
-                    # reply['msg'] = 'Incorrect password'
-                    message = 'Incorrect password'
+                    reply['status'] = False
+                    reply['msg'] = 'Incorrect password'
             except:
-                # reply['status'] = False
-                # reply['msg'] = 'Invalid username'
-                message = 'Invalid username'
-        # return HttpResponse(json.dumps(reply))
-        return render(request, 'signin.html', {"signin_form": signin_form, "message": message})
-    signin_form = SigninForm()
-    return render(request, 'signin.html', {"signin_form": signin_form})
+                reply['status'] = False
+                reply['msg'] = 'Invalid username'
+        return HttpResponse(json.dumps(reply))
+    return render(request, 'signin.html')
 
 def signup(request):
     print('3333')
     if request.method == "POST":
-        if 'signup' in request.POST:
-            print(fib(33))
-            signup_form = SignupForm(request.POST)
-            if signup_form.is_valid():
-                # username = request.POST.get('username')
-                # password = request.POST.get('password')
-                username = signup_form.cleaned_data['username']
-                password = signup_form.cleaned_data['password']
-                print(username, password)
-                new_user = models.User.objects.create()
-                new_user.name = username
-                new_user.password = password
-                new_user.save()
-                request.session['is_signin'] = True
-                request.session['user_name'] = username
-                return redirect("/")
-        else:
-            reply = {'status': True, 'msg': None}
+        reply = {'status': True, 'msg': None}
+        action = request.POST.get('type')
+        if action == "0":
             print(fib(28))
             username = request.POST.get('username')
-            # action = request.POST.get('type')
-            # if action == "0":
             same_name_user = models.User.objects.filter(name=username)
             if same_name_user:
                 reply['status'] = False
             return HttpResponse(json.dumps(reply))
-        # elif action == "1":
-        #     print(fib(32))
-        #     password = request.POST.get('password')
-        #     new_user = models.User.objects.create()
-        #     new_user.name = username
-        #     new_user.password = password
-        #     new_user.save()
-        #     reply['status'] = True
-        #     return HttpResponse(json.dumps(reply))
-    signup_form = SignupForm()
-    return render(request, 'signup.html', {"signup_form": signup_form})
+        elif action == "1":
+            print(fib(32))
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            try:
+                new_user = models.User.objects.create()
+                new_user.name = username
+                new_user.password = password
+                new_user.save()
+                reply['status'] = True
+            except:
+                reply['status'] = False
+                reply['msg'] = 'Error occured when creating account.'
+            return HttpResponse(json.dumps(reply))
+    return render(request, 'signup.html')
 
 def logout(request):
     print('5555')
