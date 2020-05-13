@@ -66,27 +66,28 @@
 }
 
 .home-label-bold {
-    display: inline-block;
+    display: block;
     color: #2e2e2e;
     font-weight: 600;
     font-size: 13px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 }
 
 .home-form-control {
     display: block;
     width: 100%;
     height: 34px;
-    border: 1px solid #dfdfdf;
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
-    color: #2e2e2e;
+    background-position: right 8px center;
+    /* background-position-x: right 8px;
+    background-position-y: center; */
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     background-color: rgb(232, 240, 254);
-    background-clip: padding-box;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-size: 14px;
+}
+
+.home-form-control:focus {
+    background-color: rgb(232, 240, 254);
 }
 
 .home-btn{
@@ -161,4 +162,19 @@
 .home-oction {
     display: inline-block;
     vertical-align: text-bottom;
+}
+
+.is-autocheck-errored {
+    padding-right: 30px;
+    background-image: url(../icon/error.png);
+}
+
+.is-autocheck-successed {
+    padding-right: 30px;
+    background-image: url(../icon/success.png);
+}
+
+.is-autocheck-loading {
+    padding-right: 30px;
+    background-image: url(../icon/loading.gif) !important;
 }

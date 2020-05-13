@@ -6,10 +6,12 @@
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="{% static "icon/favicon.ico" %}" />
         {% block title %}<title>home</title>{% endblock %}
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
         <link rel="stylesheet" href="{% static 'css/home.css' %}" />
         <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
         <script type="text/javascript" src="{% static 'jquery-ujs/rails.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         {% block css %}{% endblock %}
         {% block js %}{% endblock %}
     </head>

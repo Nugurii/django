@@ -13,6 +13,9 @@
     {% block content %}{% endblock %}
     {% block signin %}
         <div class="signin-container">
+            <div class="signin-header">
+                <span>Sign in to Home</span>
+            </div>
             {% if message %}
             <div class="signin-flash-error" id="flash-error">
                 <span class="signin-error-message">Incorrect username or password.</span>
@@ -23,9 +26,9 @@
                 </button>
             </div>
             {% endif %}
-            <div class="signin-tab-box">
+            {% comment %} <div class="signin-tab-box">
                 <label class="signin-tab-body">Sign in to Home</label>
-            </div>
+            </div> {% endcomment %}
             <div class="signin-box">
                 <div class="signin-body">
                 <form action="/user/signin/" method="POST" accept-charset="utf-8" id="form-signin">

@@ -5,14 +5,18 @@
     outline: 0;
 }
 
-/* input[type='checkbox']:hover {
-    box-shadow: 0 0 2px 2px rgba(204,226,247,0.4), 0 0 0 1px rgba(204,226,247,0.4);
-} */
-
 .signin-container {
     margin: 150px auto;
     width: 343px;
     font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+.signin-header {
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
 }
 
 .signin-tab-box {
@@ -40,8 +44,7 @@
     width: 100%;
     /* box-shadow: 0 0 0 1px #e5e5e5; */
     border: 1px solid #dfdfdf;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 4px;
     padding: 15px;
     font-size: 13px;
 }
@@ -59,28 +62,19 @@
     color: #2e2e2e;
     font-weight: 600;
     font-size: 13px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 }
 
 .signin-form-control {
     display: block;
     width: 100%;
     height: 34px;
-    border: 1px solid #dfdfdf;
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
-    color: #2e2e2e;
     background-color: rgb(232, 240, 254);
-    background-clip: padding-box;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-size: 14px;
 }
 
 .signin-form-control:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
-    border: 1px solid #80bdff;
+    background-color: rgb(232, 240, 254);
 }
 
 .signin-username {
@@ -91,13 +85,6 @@
 .signin-password {
     display: block;
     width: 100%;
-}
-
-.signin-user-remember-me {
-    display: inline-block;
-    margin-bottom: 8px;
-    color: #2e2e2e;
-    font-weight: 600;
 }
 
 .signin-float-right {
@@ -157,13 +144,13 @@
 }
 
 .signin-flash-error {
+    /* display: none; */
     width: 100%;
-    /* height: 50px; */
     border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 4px;
     background-color: rgb(255, 220, 224);
     padding: 15px 20px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 13px;
     line-height: 17px;
@@ -186,13 +173,18 @@
     cursor: pointer;
     background: none;
     border: 0;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
+    appearance: none; */
     opacity: .6;
 }
 
 .signin-flash-close:hover {
+    opacity: 1;
+}
+
+.signin-flash-close:focus {
+    box-shadow: none !important;
     opacity: 1;
 }
 
