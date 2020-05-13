@@ -7,9 +7,7 @@
         <meta charset="UTF-8">
         {% block title %}<title>Create your account</title>{% endblock %}
         {% block css %}<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
-        {% block js %}
-        <script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
-        {% endblock %}
+        {% block js %}<script type="text/javascript" src="{% static 'js/signup.js' %}"></script>{% endblock %}
     </head>
     <body>
     {% block content %} {% endblock %}
@@ -25,26 +23,26 @@
                     </button>
                 </div>
             <div class="signup-tab-box">
-                <label class="signup-tab-body">Create your account</label>
+                <span class="signup-tab-body">Create your account</span>
             </div>
             <div class="signup-box">
                 <div class="signup-body">
                         <div class="signup-form-group">
-                            <div class="signup-username">
-                                <label class="signup-label-bold">Username</label>
-                                <label class="signup-username-message" id="username-message"></label>
-                            </div>
-                            <input class="signup-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off"
+                            <label for="username" class="signup-username">
+                                <span class="signup-label-bold">Username</span>
+                                <span class="signup-username-message" id="username-message"></span>
+                            </label>
+                            <input class="form-control signup-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off"
                             required="required" type="text" spellcheck="false" tabindex="1" id="username"/>
                             <span class="siginup-username-hint">Username may only contain numbers or letters.
                             <br>Length required to be 5 to 39 characters.</span>
                         </div>
                         <div class="signup-form-group">
-                            <div class="signup-password">
-                                <label class="signup-label-bold">Password</label>
-                                <label class="signup-password-message" id="password-message"></label>
-                            </div>
-                            <input class="signup-form-control" autofocus="autofocus" required="required"
+                            <label for="password" class="signup-password">
+                                <span class="signup-label-bold">Password</span>
+                                <span class="signup-password-message" id="password-message"></span>
+                            </label>
+                            <input class="form-control signup-form-control" autofocus="autofocus" required="required"
                             type="password" tabindex="2" id="password"/>
                             <span class="siginup-password-hint">Minimum length is 8 characters.</span>
                         </div>

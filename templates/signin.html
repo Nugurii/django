@@ -13,7 +13,10 @@
     {% block content %}{% endblock %}
     {% block signin %}
         <div class="signin-container">
-            <div class="signin-flash-error" id="flash-error" hidden>
+            <div class="signin-header">
+                <span>Sign in to Home</span>
+            </div>
+            <div class="d-none signin-flash-error" id="flash-error">
                 <span class="signin-error-message">Incorrect username or password.</span>
                 <button class="signin-flash-close" type="button" id="del-message">
                     <svg class="signin-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
@@ -21,28 +24,28 @@
                     </svg>
                 </button>
             </div>
-            <div class="signin-tab-box">
+            {% comment %} <div class="signin-tab-box">
                 <label class="signin-tab-body">Sign in to Home</label>
-            </div>
+            </div> {% endcomment %}
             <div class="signin-box">
                 <div class="signin-body">
                     <div class="signin-form-group">
-                        <div for="username" class="signin-username">
-                            <label class="signin-label-bold">Username</label>
+                        <label for="username" class="signin-username">
+                            <span class="signin-label-bold">Username</span>
                             <a class="signin-float-right" href="/user/signup">Don't have an account?</a>
-                        </div>
-                        <input class="signin-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off"
+                        </label>
+                        <input class="form-control signin-form-control" autofocus="autofocus" autocapitalize="off" autocorrect="off"
                         type="text" spellcheck="false" tabindex="1" id="username" />
                     </div>
                     <div class="signin-form-group">
-                        <div for="password" class="signin-password">
-                            <label for="user_password" class="signin-label-bold">Password</label>
+                        <label for="password" class="signin-password">
+                            <span class="signin-label-bold">Password</span>
                             <a class="signin-float-right" href="">Forgot your password?</a>
-                        </div>
-                        <input class="signin-form-control" autofocus="autofocus" type="password" tabindex="2" id="password" />
+                        </label>
+                        <input class="form-control signin-form-control" autofocus="autofocus" type="password" tabindex="2" id="password" />
                     </div>
                     <div class="signin-summit-container">
-                        <input class="signin-btn" type="submit" value="Sign in" tabindex="3" id="signin"/>
+                        <input class="signin-btn" type="button" value="Sign in" tabindex="3" id="signin"/>
                     </div>
                 </div>
             </div>

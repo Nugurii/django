@@ -6,11 +6,13 @@
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="{% static "icon/favicon.ico" %}" />
         {% block title %}<title>home</title>{% endblock %}
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
         <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-        <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'jquery-plugins/jquery.cookie.js' %}"></script>
         {% block css %}{% endblock %}
-        {% block js %}{% endblock %}
+        <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        {% block js %}<script type="text/javascript" src="{% static 'js/home.js' %}"></script>{% endblock %}
     </head>
     <body>
         <div class="home-titlebar-container">
@@ -25,26 +27,21 @@
         </div>
         {% block content %}
         <div class="home-date-container">
-            {% if message %}
-            <div class="home-flash-container">
-                <span class="home-flash-message">{{ message }}</span>
+            <div class="home-flash-container" hidden>
+                <span class="home-flash-message"></span>
                 <button class="home-flash-close" type="button">
                     <svg class="home-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
                         <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
                     </svg>
                 </button>
             </div>
-            {% endif %}
             <div class="home-date-body">
-                <form action="/" method="POST" accept-charset="utf-8">
-                    {% csrf_token %}
                     <div class="home-form-group">
-                        <label class="home-label-bold">Date</label>
-                        {% comment %} <input class="home-form-control" autofocus="autofocus" required="required" type="date" name="date"/> {% endcomment %}
-                        {{ date_form.date }}
+                        <label for="date" class="home-label-bold">Date(YYYY-MM-DD)</label>
+                        <input class="form-control home-form-control" autofocus="autofocus" required="required" 
+                        type="text" spellcheck="false" id="date"/>
                     </div>
-                    <input class="home-btn" type="submit" value="查询" />
-                 </form>
+                    <input class="home-btn" type="button" value="查询" />
             </div>
         {% endblock %}
         {% block signup %}{% endblock %}
