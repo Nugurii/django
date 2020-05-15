@@ -1,14 +1,15 @@
-$(function () {
+$(function() {
 
     let is_username_valid = false;
     let is_password_valid = false;
-    
-    $("#username").on('input propertychange', function () {
+
+    $("#username").on('input propertychange', function() {
         let pattern = /^[a-zA-Z0-9]+$/;
         let username = $(this).val();
         let message = $("#username-message");
         message.hide();
         is_username_valid = false;
+        $("#signup").attr("disabled", true);
         // console.log(username, username.length, pattern.test(username));
         $(this).removeClass("is-autocheck-errored");
         $(this).removeClass("is-autocheck-successed");
@@ -42,12 +43,12 @@ $(function () {
         $.ajax({
             url: '/user/signup/',
             type: 'POST',
-            headers: {"X-CSRFToken": $.cookie("csrftoken")},
+            headers: { "X-CSRFToken": $.cookie("csrftoken") },
             data: form_data,
             dataType: 'JSON',
             processData: false,
             contentType: false,
-            success: function (args) {
+            success: function(args) {
                 console.log(args.status, args.msg)
                 if (args.status) {
                     $(that).removeClass("is-autocheck-loading");
@@ -56,23 +57,26 @@ $(function () {
                     is_username_valid = true;
                     if (is_username_valid && is_password_valid)
                         $("#signup").removeAttr("disabled");
-                }
-                else {
+                    // console.log(username.length);
+                } else {
                     $(that).removeClass("is-autocheck-loading");
                     $(that).addClass("is-autocheck-errored");
                     $(that).removeClass("is-autocheck-successed");
                     message.html("Username has been taken.");
                     message.show();
+                    is_username_valid = false;
+                    $("#signup").attr("disabled", true);
                 }
             }
         });
     })
 
-    $("#password").on('input propertychange', function () {
+    $("#password").on('input propertychange', function() {
         let password = $(this).val();
         let message = $("#password-message");
         message.hide();
         is_password_valid = false;
+        $("#signup").attr("disabled", true);
         if (password == '') {
             return;
         }
@@ -86,7 +90,7 @@ $(function () {
             $("#signup").removeAttr("disabled");
     })
 
-    $("#signup").click(function () {
+    $("#signup").click(function() {
         let form_data = new FormData();
         form_data.append('type', 1);
         form_data.append('username', $("#username").val());
@@ -94,12 +98,12 @@ $(function () {
         $.ajax({
             url: '/user/signup/',
             type: 'POST',
-            headers: {"X-CSRFToken": $.cookie("csrftoken")},
+            headers: { "X-CSRFToken": $.cookie("csrftoken") },
             data: form_data,
             dataType: 'JSON',
             processData: false,
             contentType: false,
-            success: function (args) {
+            success: function(args) {
                 let flash = $("#flash-box");
                 if (args.status) {
                     // flash.show();
@@ -107,8 +111,7 @@ $(function () {
                     // $("#password").val("");
                     alert("Sign up successfully! now it's going to sign in.");
                     window.location.href = '/user/signin/'
-                }
-                else {
+                } else {
                     // flash.removeClass("signup-flash-success");
                     // flash.addClass("signup-flash-error");
                     // flash.show();
@@ -119,13 +122,13 @@ $(function () {
         $(this).val("Signing up...")
     })
 
-    $("#del-flash-message").click(function () {
+    $("#del-flash-message").click(function() {
         $("#flash-box").hide();
     })
 
-    $(document).keydown(function (event) {
+    $(document).keydown(function(event) {
         if (event.keyCode == 13) {
-            if (($("#username").is(":focus") || $("#password").is(":focus") || $("#signup").is(":focus")) && ($("#signup").prop("disabled")==false)){
+            if (($("#username").is(":focus") || $("#password").is(":focus") || $("#signup").is(":focus")) && ($("#signup").prop("disabled") == false)) {
                 $("#signup").click();
                 return false;
             }
