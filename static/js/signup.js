@@ -8,6 +8,7 @@ $(function () {
         let username = $(this).val();
         let message = $("#username-message");
         message.hide();
+        is_username_valid = false;
         // console.log(username, username.length, pattern.test(username));
         $(this).removeClass("is-autocheck-errored");
         $(this).removeClass("is-autocheck-successed");
@@ -16,7 +17,6 @@ $(function () {
             $(this).removeClass("is-autocheck-loading");
             $(this).removeClass("is-autocheck-errored");
             $(this).removeClass("is-autocheck-successed");
-            is_username_valid = false;
             return;
         }
         if (pattern.test(username) == false) {
@@ -25,7 +25,6 @@ $(function () {
             $(this).removeClass("is-autocheck-successed");
             message.html("Username is not available.");
             message.show();
-            is_username_valid = false;
             return;
         }
         if (username.length < 5 || username.length > 39) {
@@ -34,7 +33,6 @@ $(function () {
             $(this).removeClass("is-autocheck-successed");
             message.html("Username is not available.");
             message.show();
-            is_username_valid = false;
             return;
         }
         let form_data = new FormData();
@@ -65,7 +63,6 @@ $(function () {
                     $(that).removeClass("is-autocheck-successed");
                     message.html("Username has been taken.");
                     message.show();
-                    is_username_valid = false;
                 }
             }
         });
@@ -75,13 +72,13 @@ $(function () {
         let password = $(this).val();
         let message = $("#password-message");
         message.hide();
+        is_password_valid = false;
         if (password == '') {
             return;
         }
         if (password.length < 8 || password.length > 128) {
             message.html("Password is not available.");
             message.show();
-            is_password_valid = false;
             return;
         }
         is_password_valid = true;
@@ -128,7 +125,7 @@ $(function () {
 
     $(document).keydown(function (event) {
         if (event.keyCode == 13) {
-            if ($("#username").is(":focus") || $("#password").is(":focus") || $("#signup").is(":focus")){
+            if (($("#username").is(":focus") || $("#password").is(":focus") || $("#signup").is(":focus")) && ($("#signup").prop("disabled")==false)){
                 $("#signup").click();
                 return false;
             }
