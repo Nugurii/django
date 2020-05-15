@@ -45,7 +45,7 @@ def signin(request):
     if request.method == "POST":
         reply = {'status': False, 'msg': None}
         print('3434')
-        print(fib(33)) # delay
+        print(fib(32)) # delay
         # username = request.POST.get('username')
         # password = request.POST.get('password')
         signin_form = SigninForm(request.POST)
@@ -75,11 +75,12 @@ def signup(request):
         reply = {'status': True, 'msg': None}
         action = request.POST.get('type')
         if action == "0":
-            print(fib(28))
+            # print(fib(27))
             username = request.POST.get('username')
             same_name_user = models.User.objects.filter(name=username)
             if same_name_user:
                 reply['status'] = False
+            reply['msg'] = len(username)
             return HttpResponse(json.dumps(reply))
         elif action == "1":
             print(fib(32))
