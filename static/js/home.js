@@ -6,6 +6,7 @@ $(function () {
         if (date == '') {
             $(this).removeClass("is-autocheck-errored");
             $(this).removeClass("is-autocheck-successed");
+            return;
         }
         if (pattern.test(date) == false) {
             $(this).addClass("is-autocheck-errored");
@@ -16,7 +17,5 @@ $(function () {
             $(this).addClass("is-autocheck-successed");
         }
     })
-
-
 
 })

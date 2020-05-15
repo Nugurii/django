@@ -9,7 +9,7 @@
     display: block;
     width: 100%;
     padding: 10px 30px;
-    font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 .home-title {
@@ -26,7 +26,7 @@
 
 .home-float-name {
     display: block;
-    border: 1px solid rgba(27,31,35,.2);
+    border: 1px solid rgba(27, 31, 35, .2);
     border-radius: 4px;
     margin: 0 10px;
     font-size: 18px;
@@ -57,7 +57,7 @@
     border: 1px solid #dfdfdf;
     border-radius: 4px;
     padding: 15px;
-    font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 13px;
 }
 
@@ -90,13 +90,13 @@
     background-color: rgb(232, 240, 254);
 }
 
-.home-btn{
+.home-btn {
     width: 100%;
     height: 34px;
     padding: 6px, 0;
     background-color: #28a745;
-    background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
-    border: 1px solid rgba(27,31,35,.2);
+    background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+    border: 1px solid rgba(27, 31, 35, .2);
     border-radius: 4px;
     font-size: 14px;
     color: #fff;
@@ -107,15 +107,15 @@
 
 .home-btn:hover {
     background-color: #269f42;
-    background-image: linear-gradient(-180deg,#2fcb53,#269f42 90%);
+    background-image: linear-gradient(-180deg, #2fcb53, #269f42 90%);
     /* background-position: -.5em; */
-    border-color: rgba(27,31,35,.5);
+    border-color: rgba(27, 31, 35, .5);
 }
 
 .home-btn:active {
     background-color: #279f43;
     background-image: none;
-    border-color: rgba(27,31,35,.5);
+    border-color: rgba(27, 31, 35, .5);
     /* box-shadow: 0 0 0 0.2rem rgba(60,183,111,0.5); */
 }
 
@@ -162,19 +162,4 @@
 .home-oction {
     display: inline-block;
     vertical-align: text-bottom;
-}
-
-.is-autocheck-errored {
-    padding-right: 30px;
-    background-image: url(../icon/error.png);
-}
-
-.is-autocheck-successed {
-    padding-right: 30px;
-    background-image: url(../icon/success.png);
-}
-
-.is-autocheck-loading {
-    padding-right: 30px;
-    background-image: url(../icon/loading.gif) !important;
 }
