@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{% static "icon/favicon.ico" %}" /> {% block title %}
-    <title>home</title>{% endblock %}
+    <link rel="shortcut icon" href="{% static "icon/favicon.ico" %}" /> 
+    {% block title %}<title>home</title>{% endblock %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/nav.css' %}" /> {% block css %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />{% endblock %}
@@ -16,8 +16,7 @@
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
-    {% block js %}
-    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>{% endblock %}
+    {% block js %}<script type="text/javascript" src="{% static 'js/home.js' %}"></script>{% endblock %}
 </head>
 
 <body>
