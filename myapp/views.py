@@ -45,7 +45,7 @@ def signin(request):
     if request.method == "POST":
         message = None
         print('3434')
-        print(fib(33)) # delay
+        print(fib(32)) # delay
         # username = request.POST.get('username')
         # password = request.POST.get('password')
         signin_form = SigninForm(request.POST)
@@ -70,7 +70,7 @@ def signup(request):
     print('3333')
     if request.method == "POST":
         if 'signup' in request.POST:
-            print(fib(33))
+            print(fib(32))
             signup_form = SignupForm(request.POST)
             if signup_form.is_valid():
                 username = signup_form.cleaned_data['username']
@@ -86,7 +86,6 @@ def signup(request):
                     return render(request, 'signup.html', {"signup_form": signup_form, "message": message})
         else:
             reply = {'status': True, 'msg': None}
-            print(fib(28))
             username = request.POST.get('username')
             same_name_user = models.User.objects.filter(name=username)
             if same_name_user:
