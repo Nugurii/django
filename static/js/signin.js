@@ -1,17 +1,23 @@
 $(function () {
 
     $("#signin").click(function () {
-        let form_data = new FormData();
-        form_data.append('username', $("#username").val());
-        form_data.append('password', $("#password").val());
+        // let form_data = new FormData();
+        // form_data.append('username', $("#username").val());
+        // form_data.append('password', $("#password").val());
+        let form_data = {
+            'username': $("#username").val(),
+            'password': $("#password").val()
+        }
         $.ajax({
             url: '/user/signin/',
             type: 'POST',
             headers: {"X-CSRFToken": $.cookie("csrftoken")},
-            data: form_data,
+            // data: form_data,
+            data: JSON.stringify(form_data),
             dataType: 'JSON',
             processData: false,
-            contentType: false,
+            // contentType: false,
+            contentType: 'application/json; charset=utf-8',
             success: function (args) {
                 console.log(args.status, args.msg)
                 if (args.status) {

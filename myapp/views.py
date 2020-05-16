@@ -48,7 +48,10 @@ def signin(request):
         print(fib(32)) # delay
         # username = request.POST.get('username')
         # password = request.POST.get('password')
-        signin_form = SigninForm(request.POST)
+        decode_data = json.loads(request.body)
+        print(request.body, decode_data)
+        signin_form = SigninForm(decode_data)
+        # signin_form = SigninForm(request.POST)
         if signin_form.is_valid():
             username = signin_form.cleaned_data['username']
             password = signin_form.cleaned_data['password']
