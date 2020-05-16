@@ -2,55 +2,115 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="shortcut icon" href="{% static "icon/favicon.ico" %}" />
-        {% block title %}<title>home</title>{% endblock %}
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-        <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
-        <script type="text/javascript" src="{% static 'jquery-ujs/rails.js' %}"></script>
-        <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-        {% block css %}{% endblock %}
-        {% block js %}{% endblock %}
-    </head>
-    <body>
-        <div class="home-titlebar-container">
-            <a class="home-title" href="/">home</a>
-            {% if request.session.is_signin %}
-            <a class="home-float-right" href="/user/logout">sign out</a>
-            <span class="home-float-name">{{ request.session.user_name }}</span>
-            {% else %}
-            <a class="home-float-right" href="/user/signup">sign up</a>
-            <a class="home-float-right" href="/user/signin">sign in</a>
-            {% endif %}
-        </div>
-        {% block content %}
-        <div class="home-date-container">
-            {% if message %}
-            <div class="home-flash-container">
-                <span class="home-flash-message">{{ message }}</span>
-                <button class="home-flash-close" type="button">
-                    <svg class="home-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
-                    </svg>
-                </button>
-            </div>
-            {% endif %}
-            <div class="home-date-body">
-                <form action="/" method="POST" accept-charset="utf-8">
-                    {% csrf_token %}
-                    <div class="home-form-group">
-                        <label class="home-label-bold">Date</label>
-                        {% comment %} <input class="home-form-control" autofocus="autofocus" required="required" type="date" name="date"/> {% endcomment %}
-                        {{ date_form.date }}
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static "icon/favicon.ico" %}" /> 
+    {% block title %}<title>home</title>{% endblock %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" /> {% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />{% endblock %}
+    <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery-ujs/rails.js' %}"></script>
+    <script type="text/javascript" src="{% static 'popperjs/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+    {% block js %}<script type="text/javascript" src="{% static 'js/home.js' %}"></script>{% endblock %}
+</head>
+
+<body>
+    {% comment %}
+    <div class="home-titlebar-container">
+        <a class="home-title" href="/">home</a> {% if request.session.is_signin %}
+        <a class="home-float-right" href="/user/logout">sign out</a>
+        <span class="home-float-name">{{ request.session.user_name }}</span> {% else %}
+        <a class="home-float-right" href="/user/signup">sign up</a>
+        <a class="home-float-right" href="/user/signin">sign in</a> {% endif %}
+    </div> {% endcomment %} 
+    {% csrf_token %}
+    <nav class="navbar navbar-expand-sm navbar-expand-lg bg-purple">
+        <a class="navbar-brand" href="/">
+            <img src="{% static "icon/logo.svg" %}" width="24" height="24" class="d-inline-block align-top" alt="" loading="lazy">
+            Home
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% comment %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/signin">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                    <input class="home-btn" type="submit" value="查询" />
-                 </form>
-            </div>
-        {% endblock %}
+                </li> {% endcomment %}
+            </ul>
+            <ul class="navbar-nav">
+                {% if request.session.is_signin == false %}
+                <li class="nav-item" id="test1">
+                    <a class="nav-link" href="/user/signin" data-toggle="tooltip" data-placement="bottom" title="Sign in">Sign in</a>
+                </li>
+                <li class="nav-item" id="test2">
+                    <a class="nav-link" href="/user/signup" data-toggle="tooltip" data-placement="bottom" title="Sign up">Sign up</a>
+                </li>
+                {% else %}
+                <li class="dropdown nav-item">
+                    <a class="nav-link" href role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img width="23" height="23" class="header-user-avatar" src="https://secure.gravatar.com/avatar/1092bff64b134e966d0a8b513c9c4168?s=46&amp;d=identicon">
+                        <svg class="caret-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="angle-down">
+                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 0 1 1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L8 9.586l4.293-4.293z"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <h6 class="dropdown-header">@{{ request.session.user_name }}</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/user/logout">Sign out</a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    <div class="home-date-container">
+        {% if message %}
+        <div class="home-flash-container">
+            <span class="home-flash-message">{{ message }}</span>
+            <button class="home-flash-close" type="button">
+                <svg class="home-octicon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path>
+                </svg>
+            </button>
+        </div>
+        {% endif %}
+        <div class="home-date-body">
+            <form action="/" method="POST" accept-charset="utf-8">
+                {% csrf_token %}
+                <div class="home-form-group">
+                    <label class="home-label-bold">Date</label> 
+                    {{ date_form.date }}
+                </div>
+                <input class="home-btn" type="submit" value="查询" />
+            </form>
+        </div>
+        {% endblock %} 
         {% block signup %}{% endblock %}
         {% block signin %}{% endblock %}
-    </body>
+</body>
+
 </html>

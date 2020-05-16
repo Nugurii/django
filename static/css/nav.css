@@ -1,0 +1,134 @@
+ /* align-items 属性定义flex子项在flex容器的当前行的侧轴（纵轴）方向上的对齐方式。 */
+ 
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     outline: 0;
+ }
+ /* 定义导航栏背景颜色 */
+ 
+ .bg-purple {
+     background-color: #292961;
+ }
+ /* 定义导航栏 padding */
+ 
+ .navbar {
+     padding: 4px 16px;
+     border-bottom: 1px solid #e5e5e5;
+ }
+ /* 定义导航栏左侧标题样式 */
+ 
+ .navbar-brand {
+     display: flex;
+     height: 32px;
+     padding: 2px 8px;
+     margin: 4px 2px 4px -8px;
+     align-items: center;
+     /* border-radius: 4px; */
+     font-size: 16px;
+     color: #fff;
+     /* transition: background-color 100ms linear, color 100ms linear, border 100ms linear; */
+ }
+ 
+ .navbar-brand:hover {
+     /* background-color: rgba(209,209,240,0.2); */
+     color: #fff;
+ }
+ /* 定义导航栏左侧标题图标样式 */
+ 
+ .navbar .navbar-brand img {
+     margin-right: 4px;
+     border-radius: 4px;
+ }
+ /* 定义导航栏左侧标题 a 标签的 hover 样式 */
+ 
+ .navbar>a:hover {
+     background-color: rgba(209, 209, 240, 0.2);
+     text-decoration: none;
+ }
+ /* 定义导航栏左侧标题 a 标签的圆角和动画 */
+ 
+ .navbar>a {
+     border-radius: 4px;
+     transition: background-color 100ms linear, color 100ms linear, border 100ms linear;
+ }
+ /* 定义导航栏非标题 a 标签的 hover 样式 */
+ 
+ .navbar .navbar-nav>li>a:hover {
+     background-color: rgba(209, 209, 240, 0.2);
+     text-decoration: none;
+ }
+ /* 定义导航栏非标题 a 标签的圆角和动画 */
+ 
+ .navbar .navbar-nav>li>a {
+     border-radius: 4px;
+     transition: background-color 100ms linear, color 100ms linear, border 100ms linear;
+ }
+ /* 
+* 定义导航栏非标题 a 标签的样式
+* display 设置为 flex 十分重要，结合 align-items: center 可有效使 a 标签中内容居中
+* height: 32px = 6 + 20 + 6 统一高度
+*/
+ 
+ .navbar .navbar-nav>li>a {
+     display: flex;
+     height: 32px;
+     margin: 0 2px;
+     padding: 6px 8px;
+     align-items: center;
+     line-height: 20px;
+     font-size: 12px;
+     font-weight: 600;
+     color: #fff;
+ }
+ /* 定义导航栏非标题 a 标签点击后的样式 */
+ 
+ .navbar .navbar-nav>li.active>a {
+     background-color: #fff;
+     color: #292961;
+ }
+ /* 定义导航栏所有下拉菜单点击后的样式 */
+ 
+ .navbar .navbar-nav>li.show>a {
+     background-color: #fff;
+     color: #292961;
+ }
+ /* 下拉菜单自定义图标 */
+ 
+ .caret-down {
+     top: 0;
+     height: 11px;
+     width: 11px;
+     margin-left: 4px;
+     fill: currentColor;
+ }
+ /* 用户头像 */
+ 
+ .header-user-avatar {
+     float: left;
+     border-radius: 50%;
+     border: 1px solid #d1d1f0;
+     transition: border-color 100ms linear;
+ }
+ /* 下拉菜单边框阴影 */
+ 
+ .dropdown-menu {
+     margin-top: 8px;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .is-autocheck-errored {
+     padding-right: 30px;
+     background-image: url(../icon/error.png);
+ }
+ 
+ .is-autocheck-successed {
+     padding-right: 30px;
+     background-image: url(../icon/success.png);
+ }
+ 
+ .is-autocheck-loading {
+     padding-right: 30px;
+     background-image: url(../icon/loading.gif) !important;
+ }
