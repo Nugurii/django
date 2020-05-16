@@ -9,4 +9,4 @@ class SigninForm(forms.Form):
     password = forms.CharField(max_length=128,  widget=forms.PasswordInput(attrs={'class': 'form-control signin-form-control', 'autofocus': 'autofocus', 'tabindex': '2', 'id': 'password'}), required=False)
 
 class DateForm(forms.Form):
-    date = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control home-form-control', 'autofocus': 'true', 'spellcheck': 'false'}), required=False)
+    date = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control home-form-control', 'autofocus': 'true', 'spellcheck': 'false', 'id': 'date'}), required=False)
