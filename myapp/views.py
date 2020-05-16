@@ -94,7 +94,7 @@ def signup(request):
     signup_form = SignupForm()
     return render(request, 'signup.html', {"signup_form": signup_form})
 
-def logout(request):
+def signout(request):
     print('5555')
     if not request.session.get('is_signin', None): # 如果本来就未登录，也就没有登出一说
         return redirect("/")

@@ -24,7 +24,7 @@
     {% comment %}
     <div class="home-titlebar-container">
         <a class="home-title" href="/">home</a> {% if request.session.is_signin %}
-        <a class="home-float-right" href="/user/logout">sign out</a>
+        <a class="home-float-right" href="/user/signout">sign out</a>
         <span class="home-float-name">{{ request.session.user_name }}</span> {% else %}
         <a class="home-float-right" href="/user/signup">sign up</a>
         <a class="home-float-right" href="/user/signin">sign in</a> {% endif %}
@@ -78,7 +78,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">@{{ request.session.user_name }}</h6>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/user/logout">Sign out</a>
+                        <a class="dropdown-item" href="/user/signout">Sign out</a>
                     </div>
                 </li>
                 {% endif %}
